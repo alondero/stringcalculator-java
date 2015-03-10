@@ -21,7 +21,12 @@ public class StringCalculatorTest {
 	}
 	
 	@Test
-	public void returnsTheSumOfTwoNumbersProvided() {
-		assertThat(calc.add("2,3"), is(equalTo(5)));
+	public void returnsTheSumOfAnyNumbersProvided() {
+		assertThat(calc.add("2,3,98"), is(equalTo(103)));
+	}
+	
+	@Test
+	public void handleNewLinesBetweenNumbers() {
+		assertThat(calc.add("5\n2,8"), is(equalTo(15)));
 	}
 }
