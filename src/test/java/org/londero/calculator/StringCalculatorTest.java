@@ -19,4 +19,9 @@ public class StringCalculatorTest {
 	public void returnsTheSingleNumberProvided() {
 		assertThat(calc.add("4"), is(equalTo(4)));
 	}
+	
+	@Test
+	public void returnsTheSumOfTwoNumbersProvided() {
+		assertThat(calc.add("2,3"), is(equalTo(5)));
+	}
 }

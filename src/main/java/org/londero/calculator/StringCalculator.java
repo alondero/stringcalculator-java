@@ -1,5 +1,7 @@
 package org.londero.calculator;
 
+import static java.util.Arrays.stream;
+
 
 public class StringCalculator {
 
@@ -8,7 +10,9 @@ public class StringCalculator {
 			return 0;
 		}
 		
-		return Integer.valueOf(input);
+		return stream(input.split(","))
+			.mapToInt(Integer::parseInt)
+			.sum();
 	}
 
 }
