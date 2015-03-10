@@ -29,4 +29,9 @@ public class StringCalculatorTest {
 	public void handleNewLinesBetweenNumbers() {
 		assertThat(calc.add("5\n2,8"), is(equalTo(15)));
 	}
+	
+	@Test
+	public void supportsExplicitDelimiters() {
+		assertThat(calc.add("//b\n5b6"), is(equalTo(11)));
+	}
 }
