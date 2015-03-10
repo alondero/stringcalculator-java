@@ -8,10 +8,15 @@ import org.junit.Test;
 
 public class StringCalculatorTest {
 
+	private StringCalculator calc = new StringCalculator();
+
 	@Test
 	public void returns0ForEmptyString() {
-		StringCalculator calc = new StringCalculator();
 		assertThat(calc.add(""), is(equalTo(0)));
 	}
 	
+	@Test
+	public void returnsTheSingleNumberProvided() {
+		assertThat(calc.add("4"), is(equalTo(4)));
+	}
 }
