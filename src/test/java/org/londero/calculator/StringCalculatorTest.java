@@ -1,8 +1,11 @@
 package org.londero.calculator;
 
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.hamcrest.Matchers.both;
+import static org.hamcrest.Matchers.containsString;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -39,4 +42,15 @@ public class StringCalculatorTest {
 	public void throwsExceptionWithNegativeNumbers() {
 		calc.add("-1");
 	}
+	
+	@Test
+	public void negativeExceptionContainsAllNegativeNumbers() {
+		try {
+			calc.add("-3,-6,1");
+			fail("Negative Number Exception should have been thrown");
+		} catch (NegativeNumberException e) {
+			assertThat(e.getMessage(), both(containsString("-3")).and(containsString("-6")));
+		}
+	}
+	
 }
