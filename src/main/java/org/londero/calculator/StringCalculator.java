@@ -6,6 +6,7 @@ import static org.apache.commons.lang3.StringUtils.split;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.function.IntPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
@@ -29,7 +30,7 @@ public class StringCalculator {
 		
 		return valuesByPositivity.get(POSITIVE).stream()
 			.mapToInt(Integer::intValue)
-			.filter(lessThanOrEqualTo1000())
+			.filter(lessThanOrEqualTo().apply(1000))
 			.sum();
 	}
 
@@ -37,10 +38,10 @@ public class StringCalculator {
 		return x -> x >= 0;
 	}
 
-	private IntPredicate lessThanOrEqualTo1000() {
-		return x -> x <= 1000;
+	private Function<Integer, IntPredicate> lessThanOrEqualTo() {
+		return pivot -> number -> number <= pivot;
 	}
-
+	
 	private Stream<String> findTokens(String input) {
 		String delimiter = DEFAULT_DELIMITERS;
 
