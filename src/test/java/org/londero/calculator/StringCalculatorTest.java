@@ -58,4 +58,13 @@ public class StringCalculatorTest {
 		assertThat(calc.add("42,1337"), is(equalTo(42)));
 	}
 	
+	@Test
+	public void handlesAnyLengthExplicitDelimiter() {
+		assertThat(calc.add("//[potato]\n1potato2potato3potato4"), is(equalTo(10)));
+	}
+	
+	@Test
+	public void handlesMultipleExplicitDelimiters() {
+		assertThat(calc.add("//[blue][red]\n1blue2red6"), is(equalTo(9)));
+	}
 }
