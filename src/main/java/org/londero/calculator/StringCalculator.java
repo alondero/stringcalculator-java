@@ -26,7 +26,9 @@ public class StringCalculator {
 		}
 		
 		return valuesByPositivity.get(POSITIVE).stream()
-			.reduce(0, Integer::sum);
+			.mapToInt(Integer::intValue)
+			.filter(x -> x <= 1000)
+			.sum();
 	}
 
 	private Stream<String> findTokens(String input) {

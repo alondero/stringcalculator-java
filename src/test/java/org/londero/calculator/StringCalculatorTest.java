@@ -53,4 +53,9 @@ public class StringCalculatorTest {
 		}
 	}
 	
+	@Test
+	public void ignoresNumbersGreaterThan1000() {
+		assertThat(calc.add("42,1337"), is(equalTo(42)));
+	}
+	
 }
