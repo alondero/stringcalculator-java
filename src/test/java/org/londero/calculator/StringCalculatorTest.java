@@ -34,4 +34,9 @@ public class StringCalculatorTest {
 	public void supportsExplicitDelimiters() {
 		assertThat(calc.add("//b\n5b6"), is(equalTo(11)));
 	}
+	
+	@Test(expected=NegativeNumberException.class)
+	public void throwsExceptionWithNegativeNumbers() {
+		calc.add("-1");
+	}
 }

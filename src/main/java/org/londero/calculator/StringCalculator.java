@@ -22,7 +22,13 @@ public class StringCalculator {
 		
 		return stream(input.split(delimiter))
 			.mapToInt(Integer::parseInt)
+			.peek(this::checkNegative)
 			.sum();
 	}
 
+	private void checkNegative(int test) {
+		if (test < 0) {
+			throw new NegativeNumberException();
+		}
+	}
 }
