@@ -43,7 +43,7 @@ public class StringCalculatorTest {
 		calc.add("-1");
 	}
 	
-	@Test
+	@Test // Strictly speaking, this is not a unit test
 	public void negativeExceptionContainsAllNegativeNumbers() {
 		try {
 			calc.add("-3,-6,1");

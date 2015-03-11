@@ -6,6 +6,8 @@ import static org.apache.commons.lang3.StringUtils.split;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.IntPredicate;
+import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 
@@ -19,7 +21,7 @@ public class StringCalculator {
 	public Integer add(String input) {
 		Map<Boolean, List<Integer>> valuesByPositivity = findTokens(input)
 			.map(Integer::valueOf)
-			.collect(partitioningBy(x -> x >= 0));
+			.collect(partitioningBy(isPositive()));
 		
 		if (!valuesByPositivity.get(NEGATIVE).isEmpty()) {
 			throw new NegativeNumberException(valuesByPositivity.get(false));
@@ -27,8 +29,16 @@ public class StringCalculator {
 		
 		return valuesByPositivity.get(POSITIVE).stream()
 			.mapToInt(Integer::intValue)
-			.filter(x -> x <= 1000)
+			.filter(lessThanOrEqualTo1000())
 			.sum();
+	}
+
+	private Predicate<? super Integer> isPositive() {
+		return x -> x >= 0;
+	}
+
+	private IntPredicate lessThanOrEqualTo1000() {
+		return x -> x <= 1000;
 	}
 
 	private Stream<String> findTokens(String input) {
